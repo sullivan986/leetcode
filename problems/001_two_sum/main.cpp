@@ -8,7 +8,7 @@ using namespace std;
 class Solution
 {
 public:
-    vector<int> twoSum_unordered_map(vector<int> &nums, int target)
+    static vector<int> twoSum_unordered_map(vector<int> &nums, int target)
     {
         unordered_map<int, int> hashtable;
         for (int i = 0; i < nums.size(); ++i)
@@ -23,7 +23,7 @@ public:
         return {};
     }
 
-    vector<int> twoSum_enumeration(vector<int> &nums, int target)
+    static vector<int> twoSum_enumeration(vector<int> &nums, int target)
     {
         for (int16_t i = 0; i < nums.size(); i++)
         {
@@ -40,13 +40,10 @@ public:
 
 int main(int, char **)
 {
-    for (size_t i = 0; i < 7; i++)
+    vector<int> e{2, 3, 4, 5, 6};
+    auto c = Solution::twoSum_unordered_map(e, 9);
+    for (size_t i = 0; i < c.size(); i++)
     {
-        cout << i;
-    }
-    cout << "\n";
-    for (size_t i = 0; i < 7; ++i)
-    {
-        cout << i;
+        cout << e[c[i]] << endl;
     }
 }
