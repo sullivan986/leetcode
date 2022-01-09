@@ -1,3 +1,5 @@
+SET(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-pthread")
+
 add_executable( 002_add_two_numbers
     main.cpp
 )
