@@ -1,10 +1,11 @@
-// #include "benchmark/benchmark.h"
-
 #include <iostream>
 #include <vector>
+#include <array>
 
-const int a1[3] = {0, 2, 1};
-const int a2[2] = {6, 7};
+#include "benchmark/benchmark.h"
+
+const std::array<int, 3> a1 = {0, 2, 1};
+const std::array<int, 2> a2 = {6, 7};
 
 struct ListNode
 {
@@ -15,26 +16,28 @@ struct ListNode
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
+// test1: 对位相加法
 ListNode *addTwoNumbers(ListNode *l1, ListNode *l2)
 {
-    ListNode *head = nullptr;
-    ListNode *tail = nullptr;
+    ListNode *ptr = nullptr;
+    ListNode *ln = nullptr;
 
     int carry = 0;
+
     while (l1 || l2)
     {
         int n1 = l1 ? l1->val : 0;
         int c = l1->val;
         int n2 = l2 ? l2->val : 0;
         int sum = n1 + n2 + carry;
-        if (!head)
+        if (!ptr)
         {
-            head = tail = new ListNode(sum % 10);
+            ptr = ln = new ListNode(sum % 10);
         }
         else
         {
-            tail->next = new ListNode(sum % 10);
-            tail = tail->next;
+            ln->next = new ListNode(sum % 10);
+            ln = ln->next;
         }
         carry = sum / 10;
         if (l1)
@@ -48,45 +51,67 @@ ListNode *addTwoNumbers(ListNode *l1, ListNode *l2)
     }
     if (carry > 0)
     {
-        tail->next = new ListNode(carry);
+        ln->next = new ListNode(carry);
     }
-    return head;
+    return ptr;
 }
 
+ListNode *addTwoNumbers(ListNode *l1, ListNode *l2)
+{
+    ListNode *ptr = new ListNode();
+}
+
+// 返回一个测试数组
 std::vector<ListNode *> init()
 {
     std::vector<ListNode *> t;
-    ListNode L1, L2;
-    ListNode *p1 = &L1, *p2 = &L2;
-    for (size_t i = 0; i < 3; i++)
+
+    ListNode *p1 = nullptr;
+    ListNode *p11 = nullptr;
+    ListNode *p2 = nullptr;
+    ListNode *p22 = nullptr;
+
+    p11 = p1 = new ListNode();
+    p22 = p2 = new ListNode();
+
+    for (size_t i = 0; i < a1.size(); i++)
     {
-        p1->next = new ListNode;
+        p1->next = new ListNode();
         p1->val = a1[i];
         p1 = p1->next;
     }
     p1->next = nullptr;
-    p1 = &L1;
 
-    for (size_t i = 0; i < 2; i++)
+    for (size_t i = 0; i < a2.size(); i++)
     {
-        p2->next = new ListNode;
+        p2->next = new ListNode();
         p2->val = a2[i];
         p2 = p2->next;
     }
     p2->next = nullptr;
-    p2 = &L2;
 
-    t.emplace_back(p1, p2);
+    t.emplace_back(p11);
+    t.emplace_back(p22);
     return t;
 }
 
-int main()
+// int main()
+// {
+//     auto v = init();
+//     auto r = addTwoNumbers(v[0], v[1]);
+//     for (size_t i = 0; i < 3; i++)
+//     {
+//         std::cout << r->val;
+//         r = r->next;
+//     }
+// }
+
+static void test1(benchmark::State &state)
 {
-    auto c = init();
-    auto r = addTwoNumbers(c[0], c[1]);
-    for (size_t i = 0; i < 3; i++)
+    auto v = init();
+    for (auto _ : state)
     {
-        std::cout << r->val;
-        r = r->next;
+        auto t = addTwoNumbers(v[1], v[2]);
     }
 }
+BENCHMARK(test1);
