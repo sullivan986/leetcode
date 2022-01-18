@@ -2,7 +2,7 @@
 #include <vector>
 #include <iostream>
 
-// 瞎写
+// 瞎写，笑死，超时了都
 std::string longestPalindrome(std::string s)
 {
     std::string rt;
@@ -36,15 +36,44 @@ std::string longestPalindrome(std::string s)
     return rtt;
 }
 
-// 动态规划解法
-std::string longestPalindrome2(std::string s)
+// 双迭代中心扩散法,但是如果回环是偶数就寄了
+std::string longestPalindrome1(std::string s)
 {
+    std::string rt{*s.begin()};
+
+    int32_t index = 1;
+    int32_t tp;
+    int32_t sz = s.size();
+
+    while (index != sz - 1)
+    {
+        tp = 1;
+        while (index >= tp && index + tp <= sz - 1)
+        {
+            if (s[index - tp] == s[index + tp])
+            {
+                if ((tp * 2 + 1) > (int32_t)rt.size())
+                {
+                    rt.clear();
+                    for (size_t i = index - tp; i <= index + tp; i++)
+                    {
+                        rt.push_back(s[i]);
+                    }
+                }
+            }
+
+            tp++;
+        }
+        index++;
+    }
+
+    return rt;
 }
 
-std::string y("babad");
+std::string y("cbbc");
 
 int main(int argc, char const *argv[])
 {
-    std::cout << longestPalindrome(y);
+    std::cout << longestPalindrome1(y);
     return 0;
 }
