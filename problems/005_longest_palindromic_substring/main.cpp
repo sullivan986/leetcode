@@ -87,7 +87,7 @@ std::string longestPalindrome2(std::string s)
     for (int i = 0; i < s.size(); ++i)
     {
         auto [left1, right1] = expandAroundCenter(s, i, i);
-        auto [left2, right2] = expandAroundCenter(s, i, i + 1);
+        auto [left2, right2] = expandAroundCenter(s, i, i + 1); // 阿哲
         if (right1 - left1 > end - start)
         {
             start = left1;
