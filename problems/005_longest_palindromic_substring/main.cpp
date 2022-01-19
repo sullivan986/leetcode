@@ -70,6 +70,11 @@ std::string longestPalindrome1(std::string s)
     return rt;
 }
 
+// 动态规划
+std::string longestPalindrome1(std::string s)
+{
+}
+
 std::string y("cbbc");
 
 int main(int argc, char const *argv[])
