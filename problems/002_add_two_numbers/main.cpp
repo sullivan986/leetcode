@@ -74,7 +74,7 @@ std::vector<ListNode *> init()
     p11 = p1 = new ListNode();
     p22 = p2 = new ListNode();
 
-    for (size_t i = 0; i < a1.size(); i++)
+    for (size_t i = 0; i < a1.size(); ++i)
     {
         p1->next = new ListNode();
         p1->val = a1[i];
@@ -82,7 +82,7 @@ std::vector<ListNode *> init()
     }
     p1->next = nullptr;
 
-    for (size_t i = 0; i < a2.size(); i++)
+    for (size_t i = 0; i < a2.size(); ++i)
     {
         p2->next = new ListNode();
         p2->val = a2[i];

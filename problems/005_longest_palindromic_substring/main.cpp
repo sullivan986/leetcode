@@ -118,16 +118,16 @@ std::string longestPalindrome3(std::string s)
     // dp[i][j] 表示 s[i..j] 是否是回文串
     std::vector<std::vector<int>> dp(n, std::vector<int>(n));
     // 初始化：所有长度为 1 的子串都是回文串
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; ++i)
     {
         dp[i][i] = true;
     }
     // 递推开始
     // 先枚举子串长度
-    for (int L = 2; L <= n; L++)
+    for (int L = 2; L <= n; ++L)
     {
         // 枚举左边界，左边界的上限设置可以宽松一些
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n; ++i)
         {
             // 由 L 和 i 可以确定右边界，即 j - i + 1 = L 得
             int j = L + i - 1;

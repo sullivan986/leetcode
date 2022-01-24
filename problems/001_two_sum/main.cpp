@@ -21,7 +21,7 @@ using namespace std;
 vector<int> twoSum_unordered_map(vector<int> &nums, int target)
 {
     unordered_map<int, int> hashtable;
-    for (int i = 0; i < nums.size(); ++i)
+    for (int i = 0; i < nums.size(); i++)
     {
         auto it = hashtable.contains(target - nums[i]);
         if (it)
@@ -37,7 +37,7 @@ vector<int> twoSum_unordered_map(vector<int> &nums, int target)
 vector<int> twoSum_map(vector<int> &nums, int target)
 {
     map<int, int> map_s;
-    for (int i = 0; i < nums.size(); ++i)
+    for (int i = 0; i < nums.size(); i++)
     {
         auto it = map_s.contains(target - nums[i]);
         if (it)
@@ -52,9 +52,9 @@ vector<int> twoSum_map(vector<int> &nums, int target)
 // 暴力枚举在数量级低的时候有优势，大概在一千左右就不行了
 vector<int> twoSum_enumeration(vector<int> &nums, int target)
 {
-    for (int i = 0; i < nums.size(); ++i)
+    for (int i = 0; i < nums.size(); i++)
     {
-        for (int j = 0; j < nums.size(); ++j)
+        for (int j = 0; j < nums.size(); j++)
         {
             if (nums[i] + nums[j] == target)
             {
@@ -69,7 +69,7 @@ vector<int> getArr()
 {
     vector<int> ut;
     ut.reserve(50000);
-    for (size_t i = 0; i < 50000; i++) // 针对不同情景，测试该如何完善？ 有时间再看看gtest
+    for (size_t i = 0; i < 50000; ++i) // 针对不同情景，测试该如何完善？ 有时间再看看gtest
     {
         ut.emplace_back(i);
     }
