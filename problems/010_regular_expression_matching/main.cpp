@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-//
+// 真不会
 bool isMatch(std::string s, std::string p)
 {
     int m = s.size();
