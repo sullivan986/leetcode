@@ -45,6 +45,7 @@ std::vector<std::vector<int>> threeSum1(std::vector<int> &nums)
     return ans;
 }
 
+// 弃之，食答案
 std::vector<std::vector<int>> threeSum(std::vector<int> &nums)
 {
     int sz = nums.size();
